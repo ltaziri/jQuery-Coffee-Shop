@@ -46,30 +46,49 @@
 <script>
 
     // var myImage = document.getElementById("coffee_image");
-    var myRevenueMessage = document.getElementById("revenue");
-
+    // var myRevenueMessage = document.getElementById("revenue");
+    
     $("#coffee_image").attr("src", "static/coffee_beans.jpg");
 
     $("#coffee_image").click( function () { return makeCoffee('brew');} )
 
+    $("#espresso").click( function () { return makeCoffee('espresso');} )
+
+    $("#latte").click( function () { return makeCoffee('latte');} )
+
+    $("#hot-chocolate").click( function () { return makeCoffee('hot-chocolate');} )
+
+    var prices = {
+        "brew": 2.05,
+        "espresso": 3.25,
+        "latte": 4.15,
+        "hot-chocolate": 2.50
+    };
 
     var drinksOrdered = [];
+
+    function revenue() {
+        var revenueTotal = 0;
+        for (i=0; i < drinksOrdered.length; i++) {
+            revenueTotal = revenueTotal + prices[drinksOrdered[i]];
+        }
+        $("#revenue").html("$ "+ revenueTotal.toFixed(2));
+    }
 
     function makeCoffee(drink_type) {
 
         drinksOrdered.push(drink_type);
         console.log(drinksOrdered);
 
-         $("#coffee_image").attr("src", "static/coffee_machine.jpg");
-         setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_mug.jpg"); }, 500);
-         setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_beans.jpg"); }, 1500);
+        $("#coffee_image").attr("src", "static/coffee_machine.jpg");
+        setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_mug.jpg"); }, 500);
+        setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_beans.jpg"); }, 1500);
+
+        revenue();
     }
 
+
     
-    // // new attempt
-    // $("#coffee_image").click($("#coffee_image").attr("src", "static/coffee_machine.jpg");)
-    // $("#coffee_image").click(setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_mug.jpg"); }, 500);)
-    // $("#coffee_image").click(setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_beans.jpg"); }, 1500);)
 
 </script>
 
