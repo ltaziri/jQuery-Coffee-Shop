@@ -50,14 +50,22 @@
 
     $("#coffee_image").attr("src", "static/coffee_beans.jpg");
 
-    $("#coffee_image").click(makeCoffee)
+    $("#coffee_image").click( function () { return makeCoffee('brew');} )
 
-    function makeCoffee() {
+
+    var drinksOrdered = [];
+
+    function makeCoffee(drink_type) {
+
+        drinksOrdered.push(drink_type);
+        console.log(drinksOrdered);
+
          $("#coffee_image").attr("src", "static/coffee_machine.jpg");
          setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_mug.jpg"); }, 500);
          setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_beans.jpg"); }, 1500);
     }
 
+    
     // // new attempt
     // $("#coffee_image").click($("#coffee_image").attr("src", "static/coffee_machine.jpg");)
     // $("#coffee_image").click(setTimeout(function() { $("#coffee_image").attr("src", "static/coffee_mug.jpg"); }, 500);)
